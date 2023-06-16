@@ -73,6 +73,7 @@ namespace MagicVilla_API.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Nombre")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Ocupantes")
@@ -91,8 +92,8 @@ namespace MagicVilla_API.Migrations
                             Id = 1,
                             Amenidad = "",
                             Detalle = "Detalle de la Villa...",
-                            FechaActualizacion = new DateTime(2023, 6, 12, 9, 59, 42, 953, DateTimeKind.Local).AddTicks(1879),
-                            FechaCreacion = new DateTime(2023, 6, 12, 9, 59, 42, 953, DateTimeKind.Local).AddTicks(1866),
+                            FechaActualizacion = new DateTime(2023, 6, 14, 12, 7, 43, 405, DateTimeKind.Local).AddTicks(4736),
+                            FechaCreacion = new DateTime(2023, 6, 14, 12, 7, 43, 405, DateTimeKind.Local).AddTicks(4718),
                             ImagenURL = "",
                             MetrosCuadrados = 50,
                             Nombre = "Villa Real",
@@ -104,8 +105,8 @@ namespace MagicVilla_API.Migrations
                             Id = 2,
                             Amenidad = "",
                             Detalle = "Detalle de la Villa...",
-                            FechaActualizacion = new DateTime(2023, 6, 12, 9, 59, 42, 953, DateTimeKind.Local).AddTicks(1883),
-                            FechaCreacion = new DateTime(2023, 6, 12, 9, 59, 42, 953, DateTimeKind.Local).AddTicks(1882),
+                            FechaActualizacion = new DateTime(2023, 6, 14, 12, 7, 43, 405, DateTimeKind.Local).AddTicks(4742),
+                            FechaCreacion = new DateTime(2023, 6, 14, 12, 7, 43, 405, DateTimeKind.Local).AddTicks(4741),
                             ImagenURL = "",
                             MetrosCuadrados = 40,
                             Nombre = "Premium Vista a la Piscina",

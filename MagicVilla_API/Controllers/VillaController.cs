@@ -67,7 +67,7 @@ namespace MagicVilla_API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         
-        [HttpGet("id:int", Name ="GetVilla")]
+        [HttpGet("{id:int}", Name ="GetVilla")]
         [ProducesResponseType(StatusCodes.Status200OK )]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -129,7 +129,7 @@ namespace MagicVilla_API.Controllers
                 // no ingresar nombre de villa repetidos
                 if (await context.Obtener(x => x.Nombre.ToLower() == CreateDTO.Nombre.ToLower()) != null)
                 {
-                    ModelState.AddModelError("Nombre existe", "La villa con ese nombre ya existe!");
+                    ModelState.AddModelError("ErrorMessasges", "La villa con ese nombre ya existe!");
                     return BadRequest(ModelState);
                 }
 

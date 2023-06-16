@@ -1,0 +1,12 @@
+D:\Programacion\Cursos\web-apis-net-7\MagicVilla_API\Magic_Villa_Utilidad\bin\Debug\net7.0\Magic_Villa_Utilidad.deps.json
+D:\Programacion\Cursos\web-apis-net-7\MagicVilla_API\Magic_Villa_Utilidad\bin\Debug\net7.0\Magic_Villa_Utilidad.dll
+D:\Programacion\Cursos\web-apis-net-7\MagicVilla_API\Magic_Villa_Utilidad\bin\Debug\net7.0\Magic_Villa_Utilidad.pdb
+D:\Programacion\Cursos\web-apis-net-7\MagicVilla_API\Magic_Villa_Utilidad\obj\Debug\net7.0\Magic_Villa_Utilidad.csproj.AssemblyReference.cache
+D:\Programacion\Cursos\web-apis-net-7\MagicVilla_API\Magic_Villa_Utilidad\obj\Debug\net7.0\Magic_Villa_Utilidad.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programacion\Cursos\web-apis-net-7\MagicVilla_API\Magic_Villa_Utilidad\obj\Debug\net7.0\Magic_Villa_Utilidad.AssemblyInfoInputs.cache
+D:\Programacion\Cursos\web-apis-net-7\MagicVilla_API\Magic_Villa_Utilidad\obj\Debug\net7.0\Magic_Villa_Utilidad.AssemblyInfo.cs
+D:\Programacion\Cursos\web-apis-net-7\MagicVilla_API\Magic_Villa_Utilidad\obj\Debug\net7.0\Magic_Villa_Utilidad.csproj.CoreCompileInputs.cache
+D:\Programacion\Cursos\web-apis-net-7\MagicVilla_API\Magic_Villa_Utilidad\obj\Debug\net7.0\Magic_Villa_Utilidad.dll
+D:\Programacion\Cursos\web-apis-net-7\MagicVilla_API\Magic_Villa_Utilidad\obj\Debug\net7.0\refint\Magic_Villa_Utilidad.dll
+D:\Programacion\Cursos\web-apis-net-7\MagicVilla_API\Magic_Villa_Utilidad\obj\Debug\net7.0\Magic_Villa_Utilidad.pdb
+D:\Programacion\Cursos\web-apis-net-7\MagicVilla_API\Magic_Villa_Utilidad\obj\Debug\net7.0\ref\Magic_Villa_Utilidad.dll

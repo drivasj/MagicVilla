@@ -27,7 +27,7 @@ namespace MagicVilla_API.Repositorio
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task<T> Obtener(Expression<Func<T, bool>> filtro = null, bool tracked = true)
+        public async Task<T> Obtener(Expression<Func<T, bool>> filtro = null, bool tracked = true, string? incluirPropiedades = null)
         {
             IQueryable<T> query = dbSet;
             if (!tracked)
@@ -38,10 +38,19 @@ namespace MagicVilla_API.Repositorio
             {
                 query = query.Where(filtro);
             }
+
+            if(incluirPropiedades != null) //villla,otro modelo
+            {
+                foreach(var incluirProp in incluirPropiedades.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(incluirProp);
+                }
+            }
+
             return await query.FirstOrDefaultAsync();
         }
 
-        public async Task<List<T>> ObtenerTodos(Expression<Func<T, bool>> filtro = null)
+        public async Task<List<T>> ObtenerTodos(Expression<Func<T, bool>> filtro = null, string? incluirPropiedades = null)
         {
             IQueryable<T> query = dbSet;
 
@@ -49,6 +58,15 @@ namespace MagicVilla_API.Repositorio
             {
                 query = query.Where(filtro);
             }
+
+            if (incluirPropiedades != null) //villla,otro modelo
+            {
+                foreach (var incluirProp in incluirPropiedades.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(incluirProp);
+                }
+            }
+
             return await query.ToListAsync();
         }
 
