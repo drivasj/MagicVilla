@@ -4,6 +4,7 @@ using MagicVilla_API.Modelos;
 using MagicVilla_API.Modelos.DTO.Villa;
 using MagicVilla_API.Modelos.Entidad;
 using MagicVilla_API.Repositorio.IRepositorio;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.JsonPatch.Converters;
@@ -38,6 +39,7 @@ namespace MagicVilla_API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task <ActionResult<APIResponse>> GetVillas()
         {
@@ -55,7 +57,7 @@ namespace MagicVilla_API.Controllers
             catch (Exception ex)
             {
                 response.IsExitoso = false;
-                response.ErrorsMessages = new  List<string> { ex.ToString() };
+                response.ErrorMessages = new  List<string> { ex.ToString() };
              
             }
             return response;
@@ -68,6 +70,7 @@ namespace MagicVilla_API.Controllers
         /// <returns></returns>
         
         [HttpGet("{id:int}", Name ="GetVilla")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK )]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -102,7 +105,7 @@ namespace MagicVilla_API.Controllers
             catch (Exception ex)
             {
                 response.IsExitoso = false;
-                response.ErrorsMessages = new List<string> { ex.ToString() };
+                response.ErrorMessages = new List<string> { ex.ToString() };
                 
             }
             return response;
@@ -113,10 +116,12 @@ namespace MagicVilla_API.Controllers
         /// </summary>
         /// <param name="villaDTO"></param>
         /// <returns></returns>
+
+        [HttpPost]
+        [Authorize(Roles ="admin")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [HttpPost]
         public async Task <ActionResult<APIResponse>> CrearVilla([FromBody]VillaCreateDTO CreateDTO) 
         {
             try
@@ -151,7 +156,7 @@ namespace MagicVilla_API.Controllers
             catch (Exception ex)
             {
                 response.IsExitoso = false;
-                response.ErrorsMessages = new List<string> { ex.ToString() };
+                response.ErrorMessages = new List<string> { ex.ToString() };
             }
             return response;
         }
@@ -163,6 +168,7 @@ namespace MagicVilla_API.Controllers
         /// <param name="villaDTO"></param>
         /// <returns></returns>
         [HttpPut("{id:int}")]
+        [Authorize(Roles ="admin")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task <IActionResult> UpdateVilla(int id, [FromBody] VillaUpdateDTO updateDTO)
@@ -189,6 +195,7 @@ namespace MagicVilla_API.Controllers
         /// <param name="villaDTO"></param>
         /// <returns></returns>
         [HttpPatch("{id:int}")]
+        [Authorize(Roles ="admin")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task <IActionResult> UpdatePartialVilla(int id, JsonPatchDocument<VillaUpdateDTO> jsonPatch)
@@ -226,6 +233,7 @@ namespace MagicVilla_API.Controllers
         /// <returns></returns>
         
         [HttpDelete("{id:int}")]
+        [Authorize(Roles ="admin")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -252,7 +260,7 @@ namespace MagicVilla_API.Controllers
             catch (Exception ex)
             {
                 response.IsExitoso = false;
-                response.ErrorsMessages = new List<string> { ex.ToString() };
+                response.ErrorMessages = new List<string> { ex.ToString() };
             }
             return BadRequest(response);
         }

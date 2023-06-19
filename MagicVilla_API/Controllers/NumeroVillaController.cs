@@ -60,7 +60,7 @@ namespace MagicVilla_API.Controllers
             catch (Exception ex)
             {
                 response.IsExitoso = false;
-                response.ErrorsMessages = new  List<string> { ex.ToString() };
+                response.ErrorMessages = new  List<string> { ex.ToString() };
              
             }
             return response;
@@ -107,7 +107,7 @@ namespace MagicVilla_API.Controllers
             catch (Exception ex)
             {
                 response.IsExitoso = false;
-                response.ErrorsMessages = new List<string> { ex.ToString() };
+                response.ErrorMessages = new List<string> { ex.ToString() };
                 
             }
             return response;
@@ -162,7 +162,7 @@ namespace MagicVilla_API.Controllers
             catch (Exception ex)
             {
                 response.IsExitoso = false;
-                response.ErrorsMessages = new List<string> { ex.ToString() };
+                response.ErrorMessages = new List<string> { ex.ToString() };
             }
             return response;
         }
@@ -270,7 +270,7 @@ namespace MagicVilla_API.Controllers
             catch (Exception ex)
             {
                 response.IsExitoso = false;
-                response.ErrorsMessages = new List<string> { ex.ToString() };
+                response.ErrorMessages = new List<string> { ex.ToString() };
             }
             return BadRequest(response);
         }
