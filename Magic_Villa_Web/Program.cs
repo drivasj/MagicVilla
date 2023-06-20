@@ -1,6 +1,7 @@
 using Magic_Villa_Web;
 using Magic_Villa_Web.Services;
 using Magic_Villa_Web.Services.IServices;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,32 @@ builder.Services.AddScoped<IVillaService, VillaService>();
 builder.Services.AddHttpClient<INumeroVillaService, NumeroVillaService>();
 builder.Services.AddScoped<INumeroVillaService, NumeroVillaService>();
 
+// Add service Usuario
+builder.Services.AddHttpClient<IUsuarioService, UsuarioService>();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+
+// Add service for sessions
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(100);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+// Add service session 
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+// Add service Authentication Cookie
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                                   .AddCookie(options =>
+                                    {
+                                        options.Cookie.HttpOnly = true;
+                                        options.ExpireTimeSpan = TimeSpan.FromMinutes(100);
+                                        options.LoginPath="/Usuario/Login";
+                                        options.AccessDeniedPath = "/Usuario/AccesoDenegado";
+                                        options.SlidingExpiration = true;
+                                    });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -33,7 +60,10 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication(); // UseAuthentication
 app.UseAuthorization();
+
+app.UseSession(); // para que funcione la sesion en todo el proyecto
 
 app.MapControllerRoute(
     name: "default",

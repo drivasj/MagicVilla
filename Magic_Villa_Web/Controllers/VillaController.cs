@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Magic_Villa_Utilidad;
 using Magic_Villa_Web.Models;
 using Magic_Villa_Web.Models.DTO.Villa;
 using Magic_Villa_Web.Services.IServices;
@@ -22,7 +23,8 @@ namespace Magic_Villa_Web.Controllers
         public async Task<IActionResult> IndexVilla()
         {
             List<VillaDTO> villaList = new();
-            var response = await villaService.ObtenerTodos<APIResponse>();
+
+            var response = await villaService.ObtenerTodos<APIResponse>(HttpContext.Session.GetString(DS.SessionToken));
 
             if (response !=null && response.IsExitoso)
             {
@@ -44,7 +46,7 @@ namespace Magic_Villa_Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var responsive = await villaService.Crear<APIResponse>(modelo);
+                var responsive = await villaService.Crear<APIResponse>(modelo, HttpContext.Session.GetString(DS.SessionToken));
                 if (responsive != null && responsive.IsExitoso)
                 {
                     TempData["exitoso"] = "Villa creada exitosamente";
@@ -57,7 +59,7 @@ namespace Magic_Villa_Web.Controllers
         //GET UPDATE
         public async Task<IActionResult> ActualizarVilla(int villaId)
         {
-            var response = await villaService.Obtener<APIResponse>(villaId);
+            var response = await villaService.Obtener<APIResponse>(villaId, HttpContext.Session.GetString(DS.SessionToken));
 
             if(response != null && response.IsExitoso)
             {
@@ -73,7 +75,7 @@ namespace Magic_Villa_Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var response = await villaService.Actualizar<APIResponse>(modelo);
+                var response = await villaService.Actualizar<APIResponse>(modelo, HttpContext.Session.GetString(DS.SessionToken));
                 if(response != null && response.IsExitoso)
                 {
                     TempData["exitoso"] = "Villa actualizada exitosamente";
@@ -86,7 +88,7 @@ namespace Magic_Villa_Web.Controllers
         //GET Remove
         public async Task<IActionResult> RemoverVilla(int villaId)
         {
-            var response = await villaService.Obtener<APIResponse>(villaId);
+            var response = await villaService.Obtener<APIResponse>(villaId, HttpContext.Session.GetString(DS.SessionToken));
 
             if (response != null && response.IsExitoso)
             {
@@ -101,7 +103,7 @@ namespace Magic_Villa_Web.Controllers
         public async Task<IActionResult> RemoverVilla(VillaDTO modelo)
         {
           
-            var response = await villaService.Remover<APIResponse>(modelo.Id);
+            var response = await villaService.Remover<APIResponse>(modelo.Id, HttpContext.Session.GetString(DS.SessionToken));
             if (response != null && response.IsExitoso)
             {
                 TempData["exitoso"] = "Villa eliminada exitosamente";

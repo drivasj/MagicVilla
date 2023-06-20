@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Magic_Villa_Utilidad;
 using Magic_Villa_Web.Models;
 using Magic_Villa_Web.Models.DTO.NumeroVilla;
 using Magic_Villa_Web.Models.DTO.Villa;
@@ -29,7 +30,7 @@ namespace Magic_Villa_Web.Controllers
         {
             List<NumeroVillaDTO> numeroVillaList = new();
 
-            var response = await numeroVillaService.ObtenerTodos<APIResponse>();
+            var response = await numeroVillaService.ObtenerTodos<APIResponse>(HttpContext.Session.GetString(DS.SessionToken));
 
             if(response != null && response.IsExitoso)
             {
@@ -43,7 +44,7 @@ namespace Magic_Villa_Web.Controllers
         public async Task<IActionResult> CrearNumeroVilla()
         {
             NumeroVillaViewModel numeroVillaVM = new NumeroVillaViewModel();
-            var response = await villaService.ObtenerTodos<APIResponse>();
+            var response = await villaService.ObtenerTodos<APIResponse>(HttpContext.Session.GetString(DS.SessionToken));
 
             if (response!= null && response.IsExitoso)
             {
@@ -63,7 +64,7 @@ namespace Magic_Villa_Web.Controllers
         {
             if(ModelState.IsValid)
             {
-                var response = await numeroVillaService.Crear<APIResponse>(modelo.NumeroVilla);
+                var response = await numeroVillaService.Crear<APIResponse>(modelo.NumeroVilla, HttpContext.Session.GetString(DS.SessionToken));
                 if(response != null && response.IsExitoso)
                 {
                     TempData["exitoso"] = "Villa creada exitosamente";
@@ -71,15 +72,15 @@ namespace Magic_Villa_Web.Controllers
                 }
                 else
                 {
-                    if(response.ErrorsMessages.Count>0)
+                    if(response.ErrorMessages.Count>0)
                     {
-                        ModelState.AddModelError("ErrorMessasges", response.ErrorsMessages.FirstOrDefault());
+                        ModelState.AddModelError("ErrorMessasges", response.ErrorMessages.FirstOrDefault());
                     }
                 }
             }
             /// Devuelve a la vista si el modelo no es valido
             
-            var res = await villaService.ObtenerTodos<APIResponse>();
+            var res = await villaService.ObtenerTodos<APIResponse>(HttpContext.Session.GetString(DS.SessionToken));
 
             if (res != null && res.IsExitoso)
             {
@@ -100,13 +101,13 @@ namespace Magic_Villa_Web.Controllers
         {
             NumeroVillaUpdateViewModel numeroVillaVM = new();
 
-            var response = await numeroVillaService.Obtener<APIResponse>(villaNo);
+            var response = await numeroVillaService.Obtener<APIResponse>(villaNo, HttpContext.Session.GetString(DS.SessionToken));
             if (response != null && response.IsExitoso)
             {
                 NumeroVillaDTO modelo = JsonConvert.DeserializeObject<NumeroVillaDTO>(Convert.ToString(response.Resultado));
                 numeroVillaVM.NumeroVilla = mapper.Map<NumeroVillaUpdateDTO>(modelo);
             }
-            response = await villaService.ObtenerTodos<APIResponse>();
+            response = await villaService.ObtenerTodos<APIResponse>(HttpContext.Session.GetString(DS.SessionToken));
 
             if (response != null && response.IsExitoso)
             {
@@ -129,7 +130,7 @@ namespace Magic_Villa_Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var response = await numeroVillaService.Actualizar<APIResponse>(modelo.NumeroVilla);
+                var response = await numeroVillaService.Actualizar<APIResponse>(modelo.NumeroVilla, HttpContext.Session.GetString(DS.SessionToken));
                 if (response != null && response.IsExitoso)
                 {
                     TempData["exitoso"] = "Villa actualizada exitosamente";
@@ -137,15 +138,15 @@ namespace Magic_Villa_Web.Controllers
                 }
                 else
                 {
-                    if (response.ErrorsMessages.Count > 0)
+                    if (response.ErrorMessages.Count > 0)
                     {
-                        ModelState.AddModelError("ErrorMessasges", response.ErrorsMessages.FirstOrDefault());
+                        ModelState.AddModelError("ErrorMessasges", response.ErrorMessages.FirstOrDefault());
                     }
                 }
             }
             /// Devuelve a la vista si el modelo no es valido
 
-            var res = await villaService.ObtenerTodos<APIResponse>();
+            var res = await villaService.ObtenerTodos<APIResponse>(HttpContext.Session.GetString(DS.SessionToken));
 
             if (res != null && res.IsExitoso)
             {
@@ -165,13 +166,13 @@ namespace Magic_Villa_Web.Controllers
         {
             NumeroVillaDeleteViewModel numeroVillaVM = new();
 
-            var response = await numeroVillaService.Obtener<APIResponse>(villaNo);
+            var response = await numeroVillaService.Obtener<APIResponse>(villaNo, HttpContext.Session.GetString(DS.SessionToken));
             if (response != null && response.IsExitoso)
             {
                 NumeroVillaDTO modelo = JsonConvert.DeserializeObject<NumeroVillaDTO>(Convert.ToString(response.Resultado));
                 numeroVillaVM.NumeroVilla = modelo;
             }
-            response = await villaService.ObtenerTodos<APIResponse>();
+            response = await villaService.ObtenerTodos<APIResponse>(HttpContext.Session.GetString(DS.SessionToken));
 
             if (response != null && response.IsExitoso)
             {
@@ -192,7 +193,7 @@ namespace Magic_Villa_Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RemoverNumeroVilla(NumeroVillaDeleteViewModel modelo)
         {
-            var responsive = await numeroVillaService.Remover<APIResponse>(modelo.NumeroVilla.VillaNo);
+            var responsive = await numeroVillaService.Remover<APIResponse>(modelo.NumeroVilla.VillaNo, HttpContext.Session.GetString(DS.SessionToken));
             if(responsive != null && responsive.IsExitoso)
             {
                 TempData["exitoso"] = "Número Villa eliminado    exitosamente";

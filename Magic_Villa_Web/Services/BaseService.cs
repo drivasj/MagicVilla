@@ -51,9 +51,14 @@ namespace Magic_Villa_Web.Services
                         break;                
                 }
                 HttpResponseMessage apiResponse = null;
+
+                if(!string.IsNullOrEmpty(apiRequest.Token))
+                {
+                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", apiRequest.Token);
+                }
+
                 apiResponse = await client.SendAsync(message);
                 var apiContent = await apiResponse.Content.ReadAsStringAsync();
-                //   var APIResponse = JsonConvert.DeserializeObject<T>(apiContent);
 
                 try
                 {
@@ -80,7 +85,7 @@ namespace Magic_Villa_Web.Services
             {
                 var dto = new APIResponse
                 {
-                    ErrorsMessages = new List<string>
+                    ErrorMessages = new List<string>
                     {
                         Convert.ToString(ex.Message)
                     },
