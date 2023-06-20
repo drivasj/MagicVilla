@@ -8,8 +8,9 @@ using System.Net;
 
 namespace MagicVilla_API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
+    [ApiVersionNeutral] // El controlador funcionara con todas las versiones 
     public class UsuarioController : ControllerBase
     {
         private readonly IUsuarioRepositorio usuarioRepositorio;
@@ -26,7 +27,7 @@ namespace MagicVilla_API.Controllers
         {
             var loginResponse = await usuarioRepositorio.Login(modelo);
 
-            if (loginResponse.Usuario == null || String.IsNullOrEmpty(loginResponse.Token))
+            if (loginResponse.Usuario == null || string.IsNullOrEmpty(loginResponse.Token))
             {
                 response.StatusCode = HttpStatusCode.BadRequest;
                 response.IsExitoso = false;
@@ -36,7 +37,7 @@ namespace MagicVilla_API.Controllers
             response.IsExitoso = true;
             response.StatusCode = HttpStatusCode.OK;
             response.Resultado = loginResponse;
-           
+
             return Ok(response);
         }
 

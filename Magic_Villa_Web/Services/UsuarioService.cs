@@ -23,7 +23,7 @@ namespace Magic_Villa_Web.Services
             {
                 APITipo = DS.APITipo.POST,
                 Datos = dto,
-                Url = villaUrl + "/api/usuario/login"
+                Url = villaUrl + "/api/v1/usuario/login"
             });
         }
 
@@ -33,7 +33,7 @@ namespace Magic_Villa_Web.Services
             {
                 APITipo = DS.APITipo.POST,
                 Datos = dto,
-                Url = villaUrl + "/api/usuario/registrar"
+                Url = villaUrl + "/api/v1/usuario/registrar"
             });
         }
     }
