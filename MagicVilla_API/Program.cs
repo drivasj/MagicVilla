@@ -14,7 +14,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers().AddNewtonsoftJson(); // AddNewtonsoftJson
+builder.Services.AddControllers(option =>
+{
+    //Perfil de cache
+    option.CacheProfiles.Add("Default30",
+       new CacheProfile()
+       {
+           Duration = 30
+       });
+
+}).AddNewtonsoftJson(); // AddNewtonsoftJson
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
@@ -50,7 +60,7 @@ builder.Services.AddSwaggerGen(options => {
     {
         Version = "v1",
         Title = "Magic Villa v1",
-        Description = "API para Villas"
+        Description = "API para Villas" 
     });
     options.SwaggerDoc("v2", new OpenApiInfo
     {
@@ -60,6 +70,8 @@ builder.Services.AddSwaggerGen(options => {
     });
 });
 
+//Cache 
+builder.Services.AddDistributedMemoryCache();
 
 
 

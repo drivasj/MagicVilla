@@ -2,6 +2,7 @@
 using Magic_Villa_Utilidad;
 using Magic_Villa_Web.Models;
 using Magic_Villa_Web.Models.DTO.Villa;
+using Magic_Villa_Web.Models.ViewModel;
 using Magic_Villa_Web.Services.IServices;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -21,18 +22,35 @@ namespace Magic_Villa_Web.Controllers
             this.villaService = villaService;
             this.mapper = mapper;
         }
-
-        public async Task<IActionResult> Index()
+        /// <summary>
+        /// Index
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IActionResult> Index(int pageNumber=1)
         {
             List<VillaDTO> villaList = new();
+            VillaPaginadoViewModel villaVM = new VillaPaginadoViewModel(); // PAGINACION
 
-            var response = await villaService.ObtenerTodos<APIResponse>(HttpContext.Session.GetString(DS.SessionToken));
+            if (pageNumber < 1) pageNumber = 1;
+
+            var response = await villaService.ObtenerTodosPaginado<APIResponse>(HttpContext.Session.GetString(DS.SessionToken),pageNumber,4);
 
             if (response != null)
             {
                 villaList = JsonConvert.DeserializeObject<List<VillaDTO>>(Convert.ToString(response.Resultado));
+
+                //Paginación, llenar ViewModel
+                villaVM = new VillaPaginadoViewModel()
+                {
+                    VillaList = villaList,
+                    PageNumber = pageNumber,
+                    TotalPaginas  = JsonConvert.DeserializeObject<int>(Convert.ToString(response.TotalPaginas))
+                };
+
+                if (pageNumber > 1) villaVM.Previo = "";
+                if (villaVM.TotalPaginas <= pageNumber) villaVM.Siguiente = "disable";
             }
-            return View(villaList);
+            return View(villaVM);
         }
 
         public IActionResult Privacy()
