@@ -5,12 +5,14 @@ using MagicVilla_API.Modelos.DTO.NumeroVilla;
 using MagicVilla_API.Modelos.DTO.Villa;
 using MagicVilla_API.Modelos.Entidad;
 using MagicVilla_API.Repositorio.IRepositorio;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.JsonPatch.Converters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 using System.Net;
 
 namespace MagicVilla_API.Controllers.v1
@@ -46,6 +48,7 @@ namespace MagicVilla_API.Controllers.v1
         [MapToApiVersion("1.0")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [Authorize(Roles = "admin", AuthenticationSchemes = "Bearer")]
         public async Task<ActionResult<APIResponse>> GetNumeroVillas()
         {
             try
@@ -79,7 +82,7 @@ namespace MagicVilla_API.Controllers.v1
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-
+        [Authorize(Roles = "admin", AuthenticationSchemes = "Bearer")]
         public async Task<ActionResult<APIResponse>> GetVilla(int id)
         {
             try
@@ -125,7 +128,8 @@ namespace MagicVilla_API.Controllers.v1
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpPost]
-        public async Task<ActionResult<APIResponse>> CrearVilla([FromBody] NumeroVillaCreateDTO CreateDTO)
+        [Authorize(Roles = "admin", AuthenticationSchemes = "Bearer")]
+        public async Task<ActionResult<APIResponse>> CrearNumeroVilla([FromBody] NumeroVillaCreateDTO CreateDTO)
         {
             try
             {
@@ -179,6 +183,7 @@ namespace MagicVilla_API.Controllers.v1
         [HttpPut("{id:int}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Authorize(Roles = "admin", AuthenticationSchemes = "Bearer")]
         public async Task<IActionResult> UpdateNumeroVilla(int id, [FromBody] NumeroVillaUpdateDTO updateDTO)
         {
             if (updateDTO == null || id != updateDTO.VillaNo)
@@ -212,6 +217,7 @@ namespace MagicVilla_API.Controllers.v1
         [HttpPatch("{id:int}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Authorize(Roles = "admin", AuthenticationSchemes = "Bearer")]
         public async Task<IActionResult> UpdatePartialNumeroVilla(int id, JsonPatchDocument<NumeroVillaUpdateDTO> jsonPatch)
         {
             if (jsonPatch == null || id == 0)
@@ -250,6 +256,7 @@ namespace MagicVilla_API.Controllers.v1
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Authorize(Roles = "admin", AuthenticationSchemes = "Bearer")]
         public async Task<IActionResult> DeleteNumeroVilla(int id)
         {
             try

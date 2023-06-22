@@ -225,3 +225,8 @@ D:\Programacion\Cursos\web-apis-net-7\MagicVilla_API\Magic_Villa_Web\bin\Debug\n
 D:\Programacion\Cursos\web-apis-net-7\MagicVilla_API\Magic_Villa_Web\bin\Debug\net7.0\zh-CN\Humanizer.resources.dll
 D:\Programacion\Cursos\web-apis-net-7\MagicVilla_API\Magic_Villa_Web\bin\Debug\net7.0\zh-Hans\Humanizer.resources.dll
 D:\Programacion\Cursos\web-apis-net-7\MagicVilla_API\Magic_Villa_Web\bin\Debug\net7.0\zh-Hant\Humanizer.resources.dll
+D:\Programacion\Cursos\web-apis-net-7\MagicVilla_API\Magic_Villa_Web\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
+D:\Programacion\Cursos\web-apis-net-7\MagicVilla_API\Magic_Villa_Web\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Programacion\Cursos\web-apis-net-7\MagicVilla_API\Magic_Villa_Web\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+D:\Programacion\Cursos\web-apis-net-7\MagicVilla_API\Magic_Villa_Web\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+D:\Programacion\Cursos\web-apis-net-7\MagicVilla_API\Magic_Villa_Web\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll

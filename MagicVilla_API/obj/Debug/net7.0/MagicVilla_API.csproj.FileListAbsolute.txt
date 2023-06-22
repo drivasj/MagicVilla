@@ -83,3 +83,9 @@ D:\Programacion\Cursos\web-apis-net-7\MagicVilla_API\MagicVilla_API\bin\Debug\ne
 D:\Programacion\Cursos\web-apis-net-7\MagicVilla_API\MagicVilla_API\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\Programacion\Cursos\web-apis-net-7\MagicVilla_API\MagicVilla_API\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.Versioning.dll
 D:\Programacion\Cursos\web-apis-net-7\MagicVilla_API\MagicVilla_API\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer.dll
+D:\Programacion\Cursos\web-apis-net-7\MagicVilla_API\MagicVilla_API\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\Programacion\Cursos\web-apis-net-7\MagicVilla_API\MagicVilla_API\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\Programacion\Cursos\web-apis-net-7\MagicVilla_API\MagicVilla_API\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\Programacion\Cursos\web-apis-net-7\MagicVilla_API\MagicVilla_API\bin\Debug\net7.0\Microsoft.Extensions.Identity.Core.dll
+D:\Programacion\Cursos\web-apis-net-7\MagicVilla_API\MagicVilla_API\bin\Debug\net7.0\Microsoft.Extensions.Identity.Stores.dll
+D:\Programacion\Cursos\web-apis-net-7\MagicVilla_API\MagicVilla_API\bin\Debug\net7.0\Microsoft.Extensions.Options.dll

@@ -4,7 +4,10 @@ namespace MagicVilla_API.Modelos.DTO.Usuarios
 {
     public class LoginResponseDTO
     {
-        public Usuario Usuario { get; set; }
+        public UsuarioDTO Usuario { get; set; }
+
         public string Token { get; set; }
+
+        //public string Rol { get; set; }
     }
 }

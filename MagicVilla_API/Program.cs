@@ -1,8 +1,10 @@
 using MagicVilla_API;
 using MagicVilla_API.Datos;
+using MagicVilla_API.Modelos.Entidad;
 using MagicVilla_API.Repositorio;
 using MagicVilla_API.Repositorio.IRepositorio;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -101,6 +103,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnetion"));
 });
+
+//Identity
+builder.Services.AddIdentity<UsuarioAplicacion, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
 
 //Automapper
 builder.Services.AddAutoMapper(typeof(MappingConfig));
